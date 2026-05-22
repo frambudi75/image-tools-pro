@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest]
 
     steps:
       - name: Checkout repository
@@ -40,9 +40,7 @@ jobs:
       - name: Prepare assets
         shell: bash
         run: |
-          if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            mv "dist/Image Tools PRO v6.0.0.exe" "dist/Image-Tools-PRO-Windows.exe"
-          elif [ "${{ matrix.os }}" = "macos-latest" ]; then
+          if [ "${{ matrix.os }}" = "macos-latest" ]; then
             chmod +x "dist/Image Tools PRO v6.0.0"
             zip -j "dist/Image-Tools-PRO-macOS.zip" "dist/Image Tools PRO v6.0.0"
           else
@@ -55,9 +53,9 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            dist/Image-Tools-PRO-Windows.exe
             dist/Image-Tools-PRO-macOS.zip
             dist/Image-Tools-PRO-Linux.zip
           fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
