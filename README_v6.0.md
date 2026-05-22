@@ -6,7 +6,7 @@ Folder ini berisi versi 6.0 dari Image Tools PRO dengan fitur update otomatis da
 ## 📁 File Contents
 
 ### Aplikasi Utama
-- `image tools pro v6.exe` - **File executable utama** (jalankan ini untuk menggunakan aplikasi)
+- `dist/Image Tools PRO v6.0.0.exe` - **File executable utama** (jalankan ini untuk menggunakan aplikasi)
 - `image tools pro v6.py` - Source code Python (untuk development/debugging)
 
 ### File Pendukung
@@ -23,13 +23,14 @@ Folder ini berisi versi 6.0 dari Image Tools PRO dengan fitur update otomatis da
 
 ### Untuk User Biasa:
 1. **Download** folder ini
-2. **Jalankan** `image tools pro v6.exe`
+2. **Jalankan** `dist/Image Tools PRO v6.0.0.exe`
 3. **Baca** `UPDATE_GUIDE.md` untuk panduan lengkap
 
 ### Untuk Developer:
-1. **Install** dependencies dari `requirements.txt`
-2. **Jalankan** `python image tools pro v6.py`
-3. **Baca** `UPDATE_DOCUMENTATION.md` untuk detail teknis
+1. **Install** dependencies: `pip install customtkinter pillow fpdf PyPDF2`
+2. **Jalankan** `python "image tools pro v6.py"`
+3. **Build .exe**: `python -m PyInstaller --clean "Image Tools PRO v6.0.0.spec"`
+4. **Baca** `UPDATE_DOCUMENTATION.md` untuk detail teknis
 
 ## ✨ Fitur Utama v6.0
 
