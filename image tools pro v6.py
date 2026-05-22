@@ -32,7 +32,7 @@ ctk.set_default_color_theme("blue")
 
 # Application version
 CURRENT_VERSION = "6.0.0"
-GITHUB_REPO = "frambudi75/jpg-to-pdf-convert"  # Replace with actual GitHub repository
+GITHUB_REPO = "frambudi75/image-tools-pro"  # Replace with actual GitHub repository
 
 # Update settings
 
