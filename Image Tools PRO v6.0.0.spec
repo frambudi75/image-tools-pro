@@ -1,5 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
+import sys
 
+app_icon = ['assets/image-tools.ico'] if sys.platform == 'win32' else None
 
 a = Analysis(
     ['image tools pro v6.py'],
@@ -35,5 +37,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['assets/image-tools.ico'],
+    icon=app_icon,
 )
+
