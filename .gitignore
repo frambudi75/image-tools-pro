@@ -1,5 +1,7 @@
 __pycache__/
 build/
+dist/
+*.exe
 settings.json
 history.json
 compression_log.txt

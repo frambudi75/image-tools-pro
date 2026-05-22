@@ -34,7 +34,12 @@ ctk.set_default_color_theme("blue")
 CURRENT_VERSION = "6.0.0"
 GITHUB_REPO = "frambudi75/image-tools-pro"  # Replace with actual GitHub repository
 
-# Update settings
+# Configuration paths in User Home Folder
+CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".imagetoolspro")
+os.makedirs(CONFIG_DIR, exist_ok=True)
+SETTINGS_FILE = os.path.join(CONFIG_DIR, "settings.json")
+HISTORY_FILE = os.path.join(CONFIG_DIR, "history.json")
+LOG_FILE = os.path.join(CONFIG_DIR, "compression_log.txt")
 
 class ImageCompressorApp(ctk.CTk):
     def __init__(self):
@@ -523,7 +528,7 @@ F1: Bantuan (belum diimplementasi)"""
 
     def load_settings(self):
         """Load settings from JSON file"""
-        settings_file = "settings.json"
+        settings_file = SETTINGS_FILE
         if os.path.exists(settings_file):
             try:
                 with open(settings_file, 'r') as f:
@@ -541,7 +546,7 @@ F1: Bantuan (belum diimplementasi)"""
             'output_folder': self.output_folder,
             'theme': self.theme_menu.get()
         }
-        with open("settings.json", 'w') as f:
+        with open(SETTINGS_FILE, 'w') as f:
             json.dump(settings, f, indent=4)
 
 
@@ -592,7 +597,7 @@ F1: Bantuan (belum diimplementasi)"""
 
     def load_history(self):
         """Load history from file"""
-        history_file = "history.json"
+        history_file = HISTORY_FILE
         if os.path.exists(history_file):
             try:
                 with open(history_file, 'r') as f:
@@ -603,7 +608,7 @@ F1: Bantuan (belum diimplementasi)"""
 
     def save_history(self):
         """Save history to file"""
-        with open("history.json", 'w') as f:
+        with open(HISTORY_FILE, 'w') as f:
             json.dump(self.history, f, indent=4, default=str)
 
     def add_to_history(self, operation, details):
@@ -635,7 +640,7 @@ F1: Bantuan (belum diimplementasi)"""
 
     def view_compression_log(self):
         """View the compression log file"""
-        log_file = "compression_log.txt"
+        log_file = LOG_FILE
         if not os.path.exists(log_file):
             messagebox.showinfo("Info", "File log kompresi tidak ditemukan.")
             return
@@ -778,7 +783,9 @@ F1: Bantuan (belum diimplementasi)"""
 
             # Full logging setup
             import logging
-            logging.basicConfig(filename='compression_log.txt', level=logging.INFO,
+            for handler in logging.root.handlers[:]:
+                logging.root.removeHandler(handler)
+            logging.basicConfig(filename=LOG_FILE, level=logging.INFO,
                                 format='%(asctime)s - %(levelname)s - %(message)s')
 
             format_map = {
